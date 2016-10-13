@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/main_btn_navigate_second"
+        android:text="Navigate to second screen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_marginBottom="30dp"/>
+  <Button
+      android:id="@+id/main_btn_info"
+      android:text="Show info message"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="10dp"/>
+  <Button
+        android:id="@+id/main_btn_info_action"
+        android:text="Show info message with action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"/>
+  <Button
+        android:id="@+id/main_btn_error"
+        android:text="Show error message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"/>
+  <Button
+        android:id="@+id/main_btn_error_action"
+        android:text="Show error message with action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"/>
+   
+</LinearLayout>

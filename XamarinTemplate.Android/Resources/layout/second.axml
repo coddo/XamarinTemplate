@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/second_btn_navigate_main"
+        android:text="Navigate back to main screen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+  <Button
+        android:id="@+id/second_btn_notification_main"
+        android:text="Show Notification for Main Screen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="20dp"/>
+  <Button
+        android:id="@+id/second_btn_show_loading_dialog"
+        android:text="Show loading dialog for 5 seconds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"/>
+</LinearLayout>
