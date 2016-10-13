@@ -28,7 +28,7 @@ namespace XamarinTemplate.Android.Base.UI.Activities.Base
             App.Instance.CurrentViewModel = ViewModel;
             ViewModel.CloseViewAction = Finish;
 
-            var parameters = Modules.ConcreteNavigationService.GetAndRemoveParameter<IDictionary<string, string>>(base.Intent);
+            var parameters = Modules.ConcreteNavigationService.GetAndRemoveParameter<IDictionary<string, string>>(Intent);
             if (parameters == null || parameters.Count == 0)
             {
                 var paramsString = Intent.GetStringExtra(ParameterConstants.PARAMETERS_INTENT_KEY);

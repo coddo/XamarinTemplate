@@ -1,4 +1,3 @@
-using Android.OS;
 using Android.Views;
 using GalaSoft.MvvmLight.Views;
 
@@ -8,13 +7,13 @@ namespace XamarinTemplate.Android.Base.UI.Activities.Base
     {
         private View mRootView;
 
-        public View RootView => mRootView 
+        public View RootView => mRootView
             ?? (mRootView = FindViewById(global::Android.Resource.Id.Content))
             ?? (mRootView = Window?.DecorView?.RootView);
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnResume()
         {
-            base.OnCreate(savedInstanceState);
+            base.OnResume();
 
             App.Instance.CurrentActivity = this;
         }
