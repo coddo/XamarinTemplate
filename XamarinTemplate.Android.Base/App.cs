@@ -56,6 +56,7 @@ namespace XamarinTemplate.Android.Base
             SimpleIoc.Default.Register<INetworkService, NetworkService>();
             SimpleIoc.Default.Register<INotificationMessageService, NotificationMessageService>();
             SimpleIoc.Default.Register<INotificationService, NotificationService>();
+            SimpleIoc.Default.Register<IAppSettingsService, AppSettingsService>();
         }
 
         #endregion

@@ -55,6 +55,8 @@
     <Compile Include="Services\Interfaces\INetworkService.cs" />
     <Compile Include="Services\Interfaces\INotificationMessageService.cs" />
     <Compile Include="Services\Interfaces\INotificationService.cs" />
+    <Compile Include="Services\Interfaces\IAppSettingsService.cs" />
+    <Compile Include="Services\Interfaces\IStorageService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ViewModels\Base\Args\ParametersSetEventArgs.cs" />
     <Compile Include="ViewModels\Base\BaseListItemViewModel.cs" />
