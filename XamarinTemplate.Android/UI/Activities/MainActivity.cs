@@ -15,6 +15,8 @@ namespace XamarinTemplate.Android.UI.Activities
         private Button mInfoWithActionButton;
         private Button mErrorButton;
         private Button mErrorWithActionButton;
+        private Button mSettingsTestButton;
+        private Button mDatabaseTestButton;
 
         private Button NavigateButton => mNavigateButton 
             ?? (mNavigateButton = FindViewById<Button>(Resource.Id.main_btn_navigate_second));
@@ -30,6 +32,12 @@ namespace XamarinTemplate.Android.UI.Activities
         private Button ErrorWithActionButton => mErrorWithActionButton 
             ?? (mErrorWithActionButton = FindViewById<Button>(Resource.Id.main_btn_error_action));
 
+        private Button SettingsTestButton => mSettingsTestButton
+            ?? (mSettingsTestButton = FindViewById<Button>(Resource.Id.main_btn_error_action));
+
+        private Button DatabaseTestButton => mDatabaseTestButton
+            ?? (mDatabaseTestButton = FindViewById<Button>(Resource.Id.main_btn_error_action));
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -40,6 +48,8 @@ namespace XamarinTemplate.Android.UI.Activities
             InfoWithActionButton.SetCommand("Click", ViewModel.ShowInfoMessageWithActionCommand);
             ErrorButton.SetCommand("Click", ViewModel.ShowErrorMessageCommand);
             ErrorWithActionButton.SetCommand("Click", ViewModel.ShowErrorMessageWithActionCommand);
+            SettingsTestButton.SetCommand("Click", ViewModel.GetStoreClearSettings);
+            DatabaseTestButton.SetCommand("Click", ViewModel.GetStoreClearDatabase);
         }
     }
 }

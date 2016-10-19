@@ -18,6 +18,8 @@ namespace XamarinTemplate.Core.Services.Interfaces
 
         T Get<T>(Guid key) where T : class, IModel;
 
+        T Get<T>(Expression<Func<T, bool>> @where) where T : class, IModel;
+
         IList<T> GetAll<T>() where T : class, IModel;
 
         IList<T> GetList<T>(Expression<Func<T, bool>> @where) where T : class, IModel;

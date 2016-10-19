@@ -61,7 +61,15 @@ namespace XamarinTemplate.Core.Services
         {
             using (var database = new SQLiteConnection(mPlatform, mDatabasePath))
             {
-                return database.Get<T>(key);
+                return database.Find<T>(key);
+            }
+        }
+
+        public T Get<T>(Expression<Func<T, bool>> @where) where T : class, IModel
+        {
+            using (var database = new SQLiteConnection(mPlatform, mDatabasePath))
+            {
+                return database.Get(@where);
             }
         }
 

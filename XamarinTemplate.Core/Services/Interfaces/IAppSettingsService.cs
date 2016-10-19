@@ -132,5 +132,11 @@ namespace XamarinTemplate.Core.Services.Interfaces
         /// <param name="defaultValue">The default value to be returned if the key is not found</param>
         /// <returns>The stored value as Bool</returns>
         bool GetBool(string key, bool defaultValue = default(bool));
+
+        /// <summary>
+        /// Deletes a value that is stored at the given key
+        /// </summary>
+        /// <param name="key">The key at which to delete the data</param>
+        void Delete(string key);
     }
 }
