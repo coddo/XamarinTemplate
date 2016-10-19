@@ -1,11 +1,13 @@
+using System;
 using Android.App;
 using Android.Views;
 using GalaSoft.MvvmLight.Ioc;
+using XamarinTemplate.Android.Base.IOC;
 using XamarinTemplate.Android.Base.Services;
 using XamarinTemplate.Android.Base.UI.Activities.Base;
 using XamarinTemplate.Core.Services;
 using XamarinTemplate.Core.Services.Interfaces;
-using DialogService = XamarinTemplate.Android.Base.Services.DialogService;
+using XamarinTemplate.Models.Models;
 
 namespace XamarinTemplate.Android.Base
 {
@@ -43,6 +45,8 @@ namespace XamarinTemplate.Android.Base
         {
             base.InitializeInstance();
 
+            InitializeLocalDatabase();
+
             IsAppInitialized = true;
         }
 
@@ -57,6 +61,18 @@ namespace XamarinTemplate.Android.Base
             SimpleIoc.Default.Register<INotificationMessageService, NotificationMessageService>();
             SimpleIoc.Default.Register<INotificationService, NotificationService>();
             SimpleIoc.Default.Register<IAppSettingsService, AppSettingsService>();
+        }
+
+        private void InitializeLocalDatabase()
+        {
+            var storagePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var modelsCollection = new[]
+            {
+                typeof(User)
+            };
+            var platform = new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid();
+
+            Modules.StorageService.InitializeDatabase(platform, storagePath, modelsCollection);
         }
 
         #endregion

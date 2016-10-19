@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using SQLite;
+using SQLite.Net;
+using SQLite.Net.Interop;
 using XamarinTemplate.Core.Services.Interfaces;
 using XamarinTemplate.Models.Interfaces;
 
@@ -13,26 +14,29 @@ namespace XamarinTemplate.Core.Services
     {
         private const string DATABASE_NAME = "MyDatabase.db3";
 
-        private bool mIsInitialized;
+        private bool IsInitialized { get; set; }
 
-        private string mDatabasePath;
+        private string DatabasePath { get; set; }
 
-        public void InitializeDatabase(string storagePath, IEnumerable<Type> ormModelsCollection)
+        private ISQLitePlatform Platform { get; set; }
+
+        public void InitializeDatabase(ISQLitePlatform platform, string storagePath, IEnumerable<Type> ormModelsCollection)
         {
-            if (mIsInitialized)
+            if (IsInitialized)
             {
                 return;
             }
 
-            mDatabasePath = Path.Combine(storagePath, DATABASE_NAME);
+            Platform = platform;
+            DatabasePath = Path.Combine(storagePath, DATABASE_NAME);
 
             CreateDatabase(ormModelsCollection);
-            mIsInitialized = true;
+            IsInitialized = true;
         }
 
         public int Count<T>(Expression<Func<T, bool>> @where) where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
                 return database.Table<T>().Count(@where);
             }
@@ -40,7 +44,7 @@ namespace XamarinTemplate.Core.Services
 
         public bool Any<T>(Func<T, bool> @where) where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
                 return database.Table<T>().Any(@where);
             }
@@ -48,7 +52,7 @@ namespace XamarinTemplate.Core.Services
 
         public bool All<T>(Func<T, bool> @where) where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
                 return database.Table<T>().All(@where);
             }
@@ -56,7 +60,7 @@ namespace XamarinTemplate.Core.Services
 
         public T Get<T>(Guid key) where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
                 return database.Find<T>(key);
             }
@@ -64,7 +68,7 @@ namespace XamarinTemplate.Core.Services
 
         public T Get<T>(Expression<Func<T, bool>> @where) where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
                 return database.Get(@where);
             }
@@ -72,7 +76,7 @@ namespace XamarinTemplate.Core.Services
 
         public IList<T> GetAll<T>() where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
                 return database.Table<T>().ToList();
             }
@@ -80,7 +84,7 @@ namespace XamarinTemplate.Core.Services
 
         public IList<T> GetList<T>(Expression<Func<T, bool>> @where) where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
                 return database.Table<T>().Where(@where).ToList();
             }
@@ -88,31 +92,31 @@ namespace XamarinTemplate.Core.Services
 
         public void Create<T>(T entity) where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
-                database.Insert(entity, typeof (T));
+                database.Insert(entity, typeof(T));
             }
         }
 
         public void Create<T>(IEnumerable<T> entities) where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
-                database.InsertAll(entities, typeof (T));
+                database.InsertAll(entities, typeof(T));
             }
         }
 
         public void Update<T>(Guid key, T entity) where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
-                database.Update(entity, typeof (T));
+                database.Update(entity, typeof(T));
             }
         }
 
         public void Delete<T>(T entity) where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
                 database.Delete(entity);
             }
@@ -120,7 +124,7 @@ namespace XamarinTemplate.Core.Services
 
         public void Delete<T>(IList<T> entities) where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
                 foreach (var entity in entities)
                 {
@@ -131,7 +135,7 @@ namespace XamarinTemplate.Core.Services
 
         public void Delete<T>(Guid key) where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
                 database.Delete<T>(key);
             }
@@ -139,7 +143,7 @@ namespace XamarinTemplate.Core.Services
 
         public void Delete<T>(Expression<Func<T, bool>> selector) where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
                 var entities = database.Table<T>().Where(selector);
 
@@ -152,7 +156,7 @@ namespace XamarinTemplate.Core.Services
 
         public void DeleteAll<T>() where T : class, IModel, new()
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
                 database.DeleteAll<T>();
             }
@@ -162,13 +166,18 @@ namespace XamarinTemplate.Core.Services
 
         private void CreateDatabase(IEnumerable<Type> ormModelsCollection)
         {
-            using (var database = new SQLiteConnection(mDatabasePath))
+            using (var database = Connect())
             {
                 foreach (var modelType in ormModelsCollection)
                 {
                     database.CreateTable(modelType);
                 }
             }
+        }
+
+        private SQLiteConnection Connect()
+        {
+            return new SQLiteConnection(Platform, DatabasePath);
         }
 
         #endregion

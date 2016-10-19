@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using SQLite.Net.Interop;
 using XamarinTemplate.Models.Interfaces;
 
 namespace XamarinTemplate.Core.Services.Interfaces
 {
     public interface IStorageService
     {
-        void InitializeDatabase(string storagePath, IEnumerable<Type> ormModelsCollection);
+        void InitializeDatabase(ISQLitePlatform platform, string storagePath, IEnumerable<Type> ormModelsCollection);
 
         int Count<T>(Expression<Func<T, bool>> @where) where T : class, IModel, new();
 
