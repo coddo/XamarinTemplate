@@ -159,6 +159,15 @@ namespace XamarinTemplate.Android.Base.Services
             return mPreferences.GetBoolean(key, defaultValue);
         }
 
+        public void Delete(string key)
+        {
+            var editor = mPreferences.Edit();
+
+            editor.Remove(key);
+
+            CommitChanges(editor);
+        }
+
         #region Private methods
 
         private static void CommitChanges(ISharedPreferencesEditor editor)

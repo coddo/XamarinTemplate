@@ -42,6 +42,7 @@ namespace XamarinTemplate.Core
             SimpleIoc.Default.Register<INavigationService, NavigationService>();
             SimpleIoc.Default.Register<IHttpClientService, HttpClientService>();
             SimpleIoc.Default.Register<IRestClient, RestClient>();
+            SimpleIoc.Default.Register<IStorageService, StorageService>();
         }
 
         protected virtual void CleanupIocContainer()

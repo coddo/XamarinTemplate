@@ -18,7 +18,8 @@ namespace XamarinTemplate.Core.IOC
         private INotificationMessageService mNotificationMessageService;
         private INotificationService mNotificationService;
         private IDialogService mDialogService;
-        private IAppSettingsService mSettingsService;
+        private IAppSettingsService mAppSettingsService;
+        private IStorageService mStorageService;
 
         #endregion
 
@@ -48,8 +49,11 @@ namespace XamarinTemplate.Core.IOC
         public static IDialogService DialogService => Instance.mDialogService
             ?? (Instance.mDialogService = SimpleIoc.Default.GetInstance<IDialogService>());
 
-        public static IAppSettingsService SettingsService => Instance.mSettingsService
-            ?? (Instance.mSettingsService = SimpleIoc.Default.GetInstance<IAppSettingsService>());
+        public static IAppSettingsService AppSettingsService => Instance.mAppSettingsService
+            ?? (Instance.mAppSettingsService = SimpleIoc.Default.GetInstance<IAppSettingsService>());
+
+        public static IStorageService StorageService => Instance.mStorageService
+            ?? (Instance.mStorageService = SimpleIoc.Default.GetInstance<IStorageService>());
 
         #endregion
     }
