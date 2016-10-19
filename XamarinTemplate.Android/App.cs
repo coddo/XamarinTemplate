@@ -1,9 +1,11 @@
+using System;
 using GalaSoft.MvvmLight.Ioc;
 using XamarinTemplate.Android.Base.Services.Interfaces;
 using XamarinTemplate.Android.IOC;
 using XamarinTemplate.Android.Services;
 using XamarinTemplate.Android.UI.Activities;
 using XamarinTemplate.Core.ViewModels;
+using XamarinTemplate.Models.Models;
 
 namespace XamarinTemplate.Android
 {
@@ -36,6 +38,7 @@ namespace XamarinTemplate.Android
             base.InitializeInstance();
 
             InitializeNavigationBindings();
+            InitializeLocalDatabase();
         }
 
         protected override void InitializeIocContainer()
@@ -52,6 +55,17 @@ namespace XamarinTemplate.Android
             Modules.NavigationService.Configure(nameof(SplashScreenViewModel), typeof(SplashScreenActivity));
             Modules.NavigationService.Configure(nameof(MainViewModel), typeof(MainActivity));
             Modules.NavigationService.Configure(nameof(SecondViewModel), typeof(SecondActivity));
+        }
+
+        private void InitializeLocalDatabase()
+        {
+            var storagePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var modelsCollection = new[]
+            {
+                typeof(User)
+            };
+
+            Modules.StorageService.InitializeDatabase(storagePath, modelsCollection);
         }
 
         #endregion
