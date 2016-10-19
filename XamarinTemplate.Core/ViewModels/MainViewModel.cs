@@ -12,6 +12,12 @@ namespace XamarinTemplate.Core.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        private const string SETTINGS_TEST_KEY = "someKey";
+        private static readonly Guid mDatabaseTestId = Guid.NewGuid();
+
+        private Task mSettingsTask;
+        private Task mDatabaseTask;
+
         private ICommand mNavigateCommand;
         private ICommand mShowInfoMessageCommand;
         private ICommand mShowInfoMessageWithActionCommand;
@@ -68,47 +74,74 @@ namespace XamarinTemplate.Core.ViewModels
 
         private void GetStoreClearSettingsAction()
         {
-            var value = Modules.AppSettingsService.Get("x");
+            var value = Modules.AppSettingsService.Get(SETTINGS_TEST_KEY);
             if (string.IsNullOrEmpty(value))
             {
-                RunOnUiThread(
-                    () =>
-                    Modules.NotificationMessageService.ShowError("No data found in settings. Will store it as 'HELLO WOLRD!' " + "and delete it" +
-                                                                 " after 10 seconds"));
+                Modules.NotificationMessageService.ShowError("No data found in settings. Will store it as 'HELLO WOLRD!' " + "and delete it" +
+                                                             " after 10 seconds");
 
-                Modules.AppSettingsService.Set("x", "HELLO WORLD!");
-                Task.Delay(TimeSpan.FromSeconds(10)).ConfigureAwait(false).GetAwaiter().OnCompleted(() =>
-                {
-                    Modules.AppSettingsService.Delete("x");
-                    Modules.NotificationMessageService.ShowInfo("Settings value deleted");
-                });
+                Modules.AppSettingsService.Set(SETTINGS_TEST_KEY, "HELLO WORLD!");
+                
+                CreateSettingsTask();
             }
             else
             {
-                RunOnUiThread(() => Modules.NotificationMessageService.ShowInfo($"VALUES IS: {value}"));
+                Modules.NotificationMessageService.ShowInfo($"VALUES IS: {value}");
+
+                if (mSettingsTask == null)
+                {
+                    CreateSettingsTask();
+                }
             }
         }
 
         private void GetStoreClearDatabaseAction()
         {
-            var value = Modules.AppSettingsService.Get<User>("x");
+            var value = Modules.StorageService.Get<User>(mDatabaseTestId);
             if (value == null)
             {
-                RunOnUiThread(() => Modules.NotificationMessageService.ShowError("No data found in settings. Will store a random new " +
-                                                                                 "user and delete it after 10 seconds"));
+                Modules.NotificationMessageService.ShowError("No data found in settings. Will store a random new " + "user and delete it after 10 seconds");
 
-                Modules.AppSettingsService.Set("x", "HELLO WORLD!");
-                Task.Delay(TimeSpan.FromSeconds(10)).ConfigureAwait(false).GetAwaiter().OnCompleted(() =>
+                Modules.StorageService.Create(new User
                 {
-                    Modules.AppSettingsService.Delete("x");
-                    Modules.NotificationMessageService.ShowInfo("Database entity deleted");
+                    Email = "some_email@emails.com",
+                    Id = mDatabaseTestId,
                 });
+
+                CreateDatabaseTask();
             }
             else
             {
                 var serializedObject = JsonConvert.SerializeObject(value);
-                RunOnUiThread(() => Modules.NotificationMessageService.ShowInfo($"VALUES IS: {serializedObject}"));
+                Modules.NotificationMessageService.ShowInfo($"VALUES IS: {serializedObject}");
+
+                if (mDatabaseTask == null)
+                {
+                    CreateDatabaseTask();
+                }
             }
+        }
+
+        private void CreateSettingsTask()
+        {
+            mSettingsTask = Task.Delay(TimeSpan.FromSeconds(10));
+            mSettingsTask.ConfigureAwait(false).GetAwaiter().OnCompleted(() =>
+            {
+                Modules.AppSettingsService.Delete(SETTINGS_TEST_KEY);
+                Modules.NotificationMessageService.ShowInfo("Settings value deleted");
+                mSettingsTask = null;
+            });
+        }
+
+        private void CreateDatabaseTask()
+        {
+            mDatabaseTask = Task.Delay(TimeSpan.FromSeconds(10));
+            mDatabaseTask.ConfigureAwait(false).GetAwaiter().OnCompleted(() =>
+            {
+                Modules.StorageService.Delete<User>(mDatabaseTestId);
+                Modules.NotificationMessageService.ShowInfo("Database entity deleted");
+                mDatabaseTask = null;
+            });
         }
     }
 }

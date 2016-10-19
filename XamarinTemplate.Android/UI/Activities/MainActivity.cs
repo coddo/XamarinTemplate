@@ -33,10 +33,10 @@ namespace XamarinTemplate.Android.UI.Activities
             ?? (mErrorWithActionButton = FindViewById<Button>(Resource.Id.main_btn_error_action));
 
         private Button SettingsTestButton => mSettingsTestButton
-            ?? (mSettingsTestButton = FindViewById<Button>(Resource.Id.main_btn_error_action));
+            ?? (mSettingsTestButton = FindViewById<Button>(Resource.Id.main_btn_settings));
 
         private Button DatabaseTestButton => mDatabaseTestButton
-            ?? (mDatabaseTestButton = FindViewById<Button>(Resource.Id.main_btn_error_action));
+            ?? (mDatabaseTestButton = FindViewById<Button>(Resource.Id.main_btn_database));
 
         protected override void OnCreate(Bundle bundle)
         {

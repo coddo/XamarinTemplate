@@ -166,18 +166,18 @@ namespace XamarinTemplate.Core.Services
 
         private void CreateDatabase(IEnumerable<Type> ormModelsCollection)
         {
-            using (var database = Connect())
+            using (var database = Connect(SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite))
             {
                 foreach (var modelType in ormModelsCollection)
                 {
-                    database.CreateTable(modelType);
+                    database.CreateTable(modelType, CreateFlags.AllImplicit);
                 }
             }
         }
 
-        private SQLiteConnection Connect()
+        private SQLiteConnection Connect(SQLiteOpenFlags flags = SQLiteOpenFlags.ReadWrite)
         {
-            return new SQLiteConnection(Platform, DatabasePath);
+            return new SQLiteConnection(Platform, DatabasePath, flags);
         }
 
         #endregion
