@@ -5,10 +5,10 @@ using Android.Support.V4.Content;
 using Android.Util;
 using Java.Lang;
 using Newtonsoft.Json;
-using XamarinTemplate.Android.Base.IOC;
+using XamarinTemplate.Android.Base.Containers;
 using XamarinTemplate.Android.Base.Util.Constants;
-using XamarinTemplate.Core.Enum;
-using XamarinTemplate.Core.Models;
+using XamarinTemplate.Core.Base.Enum;
+using XamarinTemplate.Core.Base.Models;
 using XamarinTemplate.Core.ViewModels;
 
 namespace XamarinTemplate.Android.Base.Util
@@ -47,7 +47,7 @@ namespace XamarinTemplate.Android.Base.Util
             {
                 if (App.IsAppInitialized)
                 {
-                    Modules.LoggingService.LogException<MessageBroadcastReceiver>(ex);
+                    CoreServices.LoggingService.LogException<MessageBroadcastReceiver>(ex);
                 }
                 else
                 {
@@ -62,7 +62,7 @@ namespace XamarinTemplate.Android.Base.Util
         private void HandleAction(AsyncMessage message, Intent intent)
         {
             var notificationId = intent.GetIntExtra(ParameterConstants.NOTIFICATION_ID_INTENT_KEY, -1);
-            Modules.NotificationService.CloseNotification(notificationId);
+            CoreServices.NotificationService.CloseNotification(notificationId);
 
             switch (message.Action)
             {
@@ -98,12 +98,12 @@ namespace XamarinTemplate.Android.Base.Util
             Intent navigationIntent;
             if (!string.IsNullOrEmpty(message.TargetViewModel))
             {
-                var view = Modules.NavigationService.Views[message.TargetViewModel];
+                var view = CoreServices.NavigationService.Views[message.TargetViewModel];
                 navigationIntent = new Intent(Application.Context, view);
             }
             else
             {
-                var mainView = Modules.NavigationService.Views[nameof(MainViewModel)];
+                var mainView = CoreServices.NavigationService.Views[nameof(MainViewModel)];
                 navigationIntent = new Intent(Application.Context, mainView);
             }
 
@@ -119,20 +119,20 @@ namespace XamarinTemplate.Android.Base.Util
 
         private void OnMainAction()
         {
-            Modules.NotificationService.CreateNotification(NotificationIcon.AppIcon, "BAM", "MAIN ACTION COMPLETED");
-            Modules.NotificationMessageService.ShowInfo("MAIN ACTION COMPLETED");
+            CoreServices.NotificationService.CreateNotification(NotificationIcon.AppIcon, "BAM", "MAIN ACTION COMPLETED");
+            CoreServices.NotificationMessageService.ShowInfo("MAIN ACTION COMPLETED");
         }
 
         private void OnSecondAction()
         {
-            Modules.NotificationService.CreateNotification(NotificationIcon.AppIcon, "BAM", "SECONDARY ACTION COMPLETED");
-            Modules.NotificationMessageService.ShowInfo("SECONDARY ACTION COMPLETED");
+            CoreServices.NotificationService.CreateNotification(NotificationIcon.AppIcon, "BAM", "SECONDARY ACTION COMPLETED");
+            CoreServices.NotificationMessageService.ShowInfo("SECONDARY ACTION COMPLETED");
         }
 
         private void OnExtraAction()
         {
-            Modules.NotificationService.CreateNotification(NotificationIcon.AppIcon, "BAM", "EXTRA ACTION COMPLETED");
-            Modules.NotificationMessageService.ShowInfo("EXTRA ACTION COMPLETED");
+            CoreServices.NotificationService.CreateNotification(NotificationIcon.AppIcon, "BAM", "EXTRA ACTION COMPLETED");
+            CoreServices.NotificationMessageService.ShowInfo("EXTRA ACTION COMPLETED");
         }
 
         #endregion

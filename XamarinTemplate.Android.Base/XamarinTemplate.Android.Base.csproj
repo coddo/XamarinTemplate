@@ -119,16 +119,16 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="BaseApp.cs" />
-    <Compile Include="IOC\Modules.cs" />
+    <Compile Include="Containers\CoreServices.cs" />
+    <Compile Include="Containers\Services.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
-    <Compile Include="Services\DialogService.cs" />
-    <Compile Include="Services\Interfaces\INotificationIconService.cs" />
-    <Compile Include="Services\LoggingService.cs" />
-    <Compile Include="Services\NetworkService.cs" />
-    <Compile Include="Services\NotificationMessageService.cs" />
-    <Compile Include="Services\NotificationService.cs" />
-    <Compile Include="Services\AppSettingsService.cs" />
+    <Compile Include="Modules\DialogService.cs" />
+    <Compile Include="Modules\LoggingService.cs" />
+    <Compile Include="Modules\NetworkService.cs" />
+    <Compile Include="Modules\NotificationMessageService.cs" />
+    <Compile Include="Modules\NotificationService.cs" />
+    <Compile Include="Modules\AppSettingsService.cs" />
     <Compile Include="UI\Activities\Base\BaseActivity.cs" />
     <Compile Include="UI\Activities\Base\RootViewBaseActivity.cs" />
     <Compile Include="UI\Components\ListView\Adapters\BaseCheckedListViewAdapter.cs" />
@@ -158,6 +158,10 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\XamarinTemplate.Core.Base\XamarinTemplate.Core.Base.csproj">
+      <Project>{375f2b69-34d8-4c0b-9bee-0209075b9836}</Project>
+      <Name>XamarinTemplate.Core.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XamarinTemplate.Core\XamarinTemplate.Core.csproj">
       <Project>{dac2fb1b-46bd-47da-b4f6-91f679a765d4}</Project>
       <Name>XamarinTemplate.Core</Name>
@@ -169,7 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
+    <Folder Include="Modules\Interfaces\" />
     <Folder Include="Resources\drawable\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

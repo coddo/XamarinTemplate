@@ -1,6 +1,6 @@
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
-using XamarinTemplate.Core.ViewModels.Base;
+using XamarinTemplate.Core.Base.ViewModels.Base;
 
 namespace XamarinTemplate.Core.ViewModels.Management
 {

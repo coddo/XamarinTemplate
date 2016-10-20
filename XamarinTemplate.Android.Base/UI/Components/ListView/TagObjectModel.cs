@@ -1,7 +1,7 @@
 using Java.Lang;
 using XamarinTemplate.Android.Base.UI.Components.ListView.ViewHolders.Interfaces;
 using XamarinTemplate.Android.Base.Util.Models;
-using XamarinTemplate.Core.ViewModels.Base;
+using XamarinTemplate.Core.Base.ViewModels.Base;
 
 namespace XamarinTemplate.Android.Base.UI.Components.ListView
 {

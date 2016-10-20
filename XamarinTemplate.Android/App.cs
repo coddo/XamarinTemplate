@@ -1,8 +1,8 @@
 using GalaSoft.MvvmLight.Ioc;
-using XamarinTemplate.Android.Base.Services.Interfaces;
-using XamarinTemplate.Android.IOC;
-using XamarinTemplate.Android.Services;
+using XamarinTemplate.Android.Containers;
+using XamarinTemplate.Android.Modules;
 using XamarinTemplate.Android.UI.Activities;
+using XamarinTemplate.Core.Base.Modules.Interfaces;
 using XamarinTemplate.Core.ViewModels;
 
 namespace XamarinTemplate.Android
@@ -15,21 +15,11 @@ namespace XamarinTemplate.Android
 
         public static void Initialize()
         {
-            // App IOC
-            var modules = new Modules();
-
-            SimpleIoc.Default.Register(() => modules);
-            SimpleIoc.Default.Register<Base.IOC.Modules>(() => modules);
-            SimpleIoc.Default.Register<Core.IOC.Modules>(() => modules);
-
-            // App
-            mInstance = new App();
-            mInstance.InitializeInstance();
-
-            SimpleIoc.Default.Register(() => mInstance);
-            SimpleIoc.Default.Register<Base.App>(() => mInstance);
-            SimpleIoc.Default.Register<Core.App>(() => mInstance);
+            InitializeServices();
+            InitializeApp();
         }
+
+        #region Overrides
 
         public override void InitializeInstance()
         {
@@ -38,20 +28,54 @@ namespace XamarinTemplate.Android
             InitializeNavigationBindings();
         }
 
-        protected override void InitializeIocContainer()
+        protected override void RegisterCoreServices()
         {
-            base.InitializeIocContainer();
+            base.RegisterCoreServices();
 
             SimpleIoc.Default.Register<INotificationIconService, NotificationIconService>();
         }
 
-        #region Private initialization methods
+        protected override void RegisterServices()
+        {
+            base.RegisterServices();
+        }
+
+        #endregion
+
+        #region App initialization methods
+
+        private static void InitializeApp()
+        {
+            mInstance = new App();
+            mInstance.InitializeInstance();
+
+            SimpleIoc.Default.Register(() => mInstance);
+            SimpleIoc.Default.Register<Base.App>(() => mInstance);
+            SimpleIoc.Default.Register<Core.App>(() => mInstance);
+        }
+
+        private static void InitializeServices()
+        {
+            // App Core services
+            var coreServices = new CoreServices();
+
+            SimpleIoc.Default.Register(() => coreServices);
+            SimpleIoc.Default.Register<Base.Containers.CoreServices>(() => coreServices);
+            SimpleIoc.Default.Register<Core.Base.Containers.CoreServices>(() => coreServices);
+
+            // App services
+            var services = new Services();
+
+            SimpleIoc.Default.Register(() => services);
+            SimpleIoc.Default.Register<Base.Containers.Services>(() => services);
+            SimpleIoc.Default.Register<Core.Base.Containers.Services>(() => services);
+        }
 
         private void InitializeNavigationBindings()
         {
-            Modules.NavigationService.Configure(nameof(SplashScreenViewModel), typeof(SplashScreenActivity));
-            Modules.NavigationService.Configure(nameof(MainViewModel), typeof(MainActivity));
-            Modules.NavigationService.Configure(nameof(SecondViewModel), typeof(SecondActivity));
+            CoreServices.NavigationService.Configure(nameof(SplashScreenViewModel), typeof(SplashScreenActivity));
+            CoreServices.NavigationService.Configure(nameof(MainViewModel), typeof(MainActivity));
+            CoreServices.NavigationService.Configure(nameof(SecondViewModel), typeof(SecondActivity));
         }
 
         #endregion

@@ -69,7 +69,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
@@ -120,11 +119,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Containers\Services.cs" />
     <Compile Include="MainApp.cs" />
-    <Compile Include="IOC\Modules.cs" />
+    <Compile Include="Containers\CoreServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
-    <Compile Include="Services\NotificationIconService.cs" />
+    <Compile Include="Modules\NotificationIconService.cs" />
     <Compile Include="UI\Activities\MainActivity.cs" />
     <Compile Include="UI\Activities\SecondActivity.cs" />
     <Compile Include="UI\Activities\SplashScreenActivity.cs" />
@@ -138,12 +138,6 @@
     <AndroidResource Include="Resources\layout\splash_screen.axml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\anim\top_in.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\anim\top_out.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\app_icon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +147,10 @@
     <ProjectReference Include="..\XamarinTemplate.Android.Base\XamarinTemplate.Android.Base.csproj">
       <Project>{5a2d2767-b78f-46d3-bb1a-caa5d983dc6b}</Project>
       <Name>XamarinTemplate.Android.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XamarinTemplate.Core.Base\XamarinTemplate.Core.Base.csproj">
+      <Project>{375f2b69-34d8-4c0b-9bee-0209075b9836}</Project>
+      <Name>XamarinTemplate.Core.Base</Name>
     </ProjectReference>
     <ProjectReference Include="..\XamarinTemplate.Core\XamarinTemplate.Core.csproj">
       <Project>{dac2fb1b-46bd-47da-b4f6-91f679a765d4}</Project>
@@ -165,7 +163,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
-    <Folder Include="Services\Interfaces\" />
+    <Folder Include="Resources\anim\" />
+    <Folder Include="Service\" />
     <Folder Include="UI\Components\" />
     <Folder Include="Util\" />
   </ItemGroup>

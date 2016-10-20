@@ -1,5 +1,5 @@
-using XamarinTemplate.Android.Base.IOC;
-using XamarinTemplate.Core.Enum;
+using XamarinTemplate.Android.Base.Containers;
+using XamarinTemplate.Core.Base.Enum;
 
 namespace XamarinTemplate.Android.Base.Util.Icons
 {
@@ -7,7 +7,7 @@ namespace XamarinTemplate.Android.Base.Util.Icons
     {
         public static int GetResourceId(this NotificationIcon icon)
         {
-            return Modules.NotificationIconService.GetValue(icon);
+            return CoreServices.NotificationIconService.GetValue(icon);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using XamarinTemplate.Core.ViewModels.Base;
+using XamarinTemplate.Core.Base.ViewModels.Base;
 
 namespace XamarinTemplate.Core.ViewModels
 {
