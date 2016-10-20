@@ -69,7 +69,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
@@ -148,6 +147,10 @@
     <ProjectReference Include="..\XamarinTemplate.Android.Base\XamarinTemplate.Android.Base.csproj">
       <Project>{5a2d2767-b78f-46d3-bb1a-caa5d983dc6b}</Project>
       <Name>XamarinTemplate.Android.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XamarinTemplate.Core.Base\XamarinTemplate.Core.Base.csproj">
+      <Project>{375f2b69-34d8-4c0b-9bee-0209075b9836}</Project>
+      <Name>XamarinTemplate.Core.Base</Name>
     </ProjectReference>
     <ProjectReference Include="..\XamarinTemplate.Core\XamarinTemplate.Core.csproj">
       <Project>{dac2fb1b-46bd-47da-b4f6-91f679a765d4}</Project>

@@ -1,5 +1,5 @@
 using XamarinTemplate.Android.Base.Containers;
-using XamarinTemplate.Core.Enum;
+using XamarinTemplate.Core.Base.Enum;
 
 namespace XamarinTemplate.Android.Base.Util.Icons
 {

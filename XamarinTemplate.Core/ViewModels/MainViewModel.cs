@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
-using XamarinTemplate.Core.Containers;
-using XamarinTemplate.Core.ViewModels.Base;
+using XamarinTemplate.Core.Base.Containers;
+using XamarinTemplate.Core.Base.ViewModels.Base;
 using XamarinTemplate.Models.Models;
 
 namespace XamarinTemplate.Core.ViewModels

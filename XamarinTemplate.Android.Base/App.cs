@@ -6,8 +6,8 @@ using SQLite.Net.Platform.XamarinAndroid;
 using XamarinTemplate.Android.Base.Containers;
 using XamarinTemplate.Android.Base.Modules;
 using XamarinTemplate.Android.Base.UI.Activities.Base;
-using XamarinTemplate.Core.Modules;
-using XamarinTemplate.Core.Modules.Interfaces;
+using XamarinTemplate.Core.Base.Modules;
+using XamarinTemplate.Core.Base.Modules.Interfaces;
 using XamarinTemplate.Models.Models;
 
 namespace XamarinTemplate.Android.Base

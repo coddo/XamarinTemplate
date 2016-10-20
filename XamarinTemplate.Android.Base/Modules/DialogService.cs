@@ -2,7 +2,7 @@ using Android.App;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Widget;
-using XamarinTemplate.Core.Modules.Interfaces;
+using XamarinTemplate.Core.Base.Modules.Interfaces;
 
 namespace XamarinTemplate.Android.Base.Modules
 {

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using GalaSoft.MvvmLight.Helpers;
 using Newtonsoft.Json;
 using XamarinTemplate.Android.Base.Util.Constants;
-using XamarinTemplate.Core.ViewModels.Base;
+using XamarinTemplate.Core.Base.ViewModels.Base;
 using XamarinTemplate.Core.ViewModels.Management;
 
 namespace XamarinTemplate.Android.Base.UI.Activities.Base

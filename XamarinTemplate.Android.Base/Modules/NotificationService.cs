@@ -7,9 +7,9 @@ using Android.Support.V4.App;
 using Newtonsoft.Json;
 using XamarinTemplate.Android.Base.Util.Constants;
 using XamarinTemplate.Android.Base.Util.Icons;
-using XamarinTemplate.Core.Enum;
-using XamarinTemplate.Core.Models;
-using XamarinTemplate.Core.Modules.Interfaces;
+using XamarinTemplate.Core.Base.Enum;
+using XamarinTemplate.Core.Base.Models;
+using XamarinTemplate.Core.Base.Modules.Interfaces;
 using XamarinTemplate.Models.Extensions;
 
 namespace XamarinTemplate.Android.Base.Modules

@@ -1,6 +1,6 @@
 using System;
 using Android.Util;
-using XamarinTemplate.Core.Modules.Interfaces;
+using XamarinTemplate.Core.Base.Modules.Interfaces;
 
 namespace XamarinTemplate.Android.Base.Modules
 {

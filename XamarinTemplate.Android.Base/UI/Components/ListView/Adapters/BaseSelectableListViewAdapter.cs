@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Android.Content;
 using Android.Runtime;
 using XamarinTemplate.Android.Base.UI.Components.ListView.ViewHolders.Interfaces;
-using XamarinTemplate.Core.ViewModels.Base;
+using XamarinTemplate.Core.Base.ViewModels.Base;
 
 namespace XamarinTemplate.Android.Base.UI.Components.ListView.Adapters
 {

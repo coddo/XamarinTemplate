@@ -35,36 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Constants\NotificationConstants.cs" />
-    <Compile Include="Containers\Services.cs" />
-    <Compile Include="Enum\MessageAction.cs" />
-    <Compile Include="Enum\NotificationIcon.cs" />
-    <Compile Include="Modules\Interfaces\INotificationIconService.cs" />
-    <Compile Include="Containers\CoreServices.cs" />
-    <Compile Include="Models\AsyncMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="REST\Constants\ApiConstants.cs" />
-    <Compile Include="REST\Enums\ApiEndpoint.cs" />
-    <Compile Include="REST\Enums\HttpMethod.cs" />
-    <Compile Include="REST\Http\ApiEndpointContainer.cs" />
-    <Compile Include="REST\Http\RestClient.cs" />
-    <Compile Include="REST\Interfaces\IRestClient.cs" />
-    <Compile Include="Modules\HttpClientService.cs" />
-    <Compile Include="Modules\Interfaces\IDialogService.cs" />
-    <Compile Include="Modules\Interfaces\IHttpClientService.cs" />
-    <Compile Include="Modules\Interfaces\ILoggingService.cs" />
-    <Compile Include="Modules\Interfaces\INavigationService.cs" />
-    <Compile Include="Modules\Interfaces\INetworkService.cs" />
-    <Compile Include="Modules\Interfaces\INotificationMessageService.cs" />
-    <Compile Include="Modules\Interfaces\INotificationService.cs" />
-    <Compile Include="Modules\Interfaces\IAppSettingsService.cs" />
-    <Compile Include="Modules\Interfaces\IStorageService.cs" />
-    <Compile Include="Modules\NavigationService.cs" />
-    <Compile Include="Modules\StorageService.cs" />
-    <Compile Include="ViewModels\Base\Args\ParametersSetEventArgs.cs" />
-    <Compile Include="ViewModels\Base\BaseListItemViewModel.cs" />
-    <Compile Include="ViewModels\Base\BaseViewModel.cs" />
-    <Compile Include="ViewModels\Base\EventBaseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Management\ViewModelIoc.cs" />
     <Compile Include="ViewModels\SecondViewModel.cs" />
@@ -108,6 +79,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\XamarinTemplate.Core.Base\XamarinTemplate.Core.Base.csproj">
+      <Project>{375f2b69-34d8-4c0b-9bee-0209075b9836}</Project>
+      <Name>XamarinTemplate.Core.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XamarinTemplate.Models\XamarinTemplate.Models.csproj">
       <Project>{c628c9fb-d6eb-4c84-a32c-a93eadcbff07}</Project>
       <Name>XamarinTemplate.Models</Name>

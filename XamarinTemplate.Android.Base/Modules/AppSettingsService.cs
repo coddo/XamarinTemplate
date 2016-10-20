@@ -4,8 +4,8 @@ using System.Globalization;
 using Android.App;
 using Android.Content;
 using Newtonsoft.Json;
-using XamarinTemplate.Core.Containers;
-using XamarinTemplate.Core.Modules.Interfaces;
+using XamarinTemplate.Android.Base.Containers;
+using XamarinTemplate.Core.Base.Modules.Interfaces;
 
 namespace XamarinTemplate.Android.Base.Modules
 {

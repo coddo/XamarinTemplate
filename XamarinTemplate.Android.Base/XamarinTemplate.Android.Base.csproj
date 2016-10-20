@@ -158,6 +158,10 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\XamarinTemplate.Core.Base\XamarinTemplate.Core.Base.csproj">
+      <Project>{375f2b69-34d8-4c0b-9bee-0209075b9836}</Project>
+      <Name>XamarinTemplate.Core.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XamarinTemplate.Core\XamarinTemplate.Core.csproj">
       <Project>{dac2fb1b-46bd-47da-b4f6-91f679a765d4}</Project>
       <Name>XamarinTemplate.Core</Name>

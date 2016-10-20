@@ -7,8 +7,8 @@ using Java.Lang;
 using Newtonsoft.Json;
 using XamarinTemplate.Android.Base.Containers;
 using XamarinTemplate.Android.Base.Util.Constants;
-using XamarinTemplate.Core.Enum;
-using XamarinTemplate.Core.Models;
+using XamarinTemplate.Core.Base.Enum;
+using XamarinTemplate.Core.Base.Models;
 using XamarinTemplate.Core.ViewModels;
 
 namespace XamarinTemplate.Android.Base.Util

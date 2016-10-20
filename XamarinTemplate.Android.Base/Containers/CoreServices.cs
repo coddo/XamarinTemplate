@@ -1,9 +1,9 @@
 using GalaSoft.MvvmLight.Ioc;
-using XamarinTemplate.Core.Modules;
+using XamarinTemplate.Core.Base.Modules;
 
 namespace XamarinTemplate.Android.Base.Containers
 {
-    public abstract class CoreServices : Core.Containers.CoreServices
+    public abstract class CoreServices : Core.Base.Containers.CoreServices
     {
         private static CoreServices Instance => SimpleIoc.Default.GetInstance<CoreServices>();
 

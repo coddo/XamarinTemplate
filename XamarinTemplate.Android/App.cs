@@ -2,7 +2,7 @@ using GalaSoft.MvvmLight.Ioc;
 using XamarinTemplate.Android.Containers;
 using XamarinTemplate.Android.Modules;
 using XamarinTemplate.Android.UI.Activities;
-using XamarinTemplate.Core.Modules.Interfaces;
+using XamarinTemplate.Core.Base.Modules.Interfaces;
 using XamarinTemplate.Core.ViewModels;
 
 namespace XamarinTemplate.Android
@@ -61,14 +61,14 @@ namespace XamarinTemplate.Android
 
             SimpleIoc.Default.Register(() => coreServices);
             SimpleIoc.Default.Register<Base.Containers.CoreServices>(() => coreServices);
-            SimpleIoc.Default.Register<Core.Containers.CoreServices>(() => coreServices);
+            SimpleIoc.Default.Register<Core.Base.Containers.CoreServices>(() => coreServices);
 
             // App services
             var services = new Services();
 
             SimpleIoc.Default.Register(() => services);
             SimpleIoc.Default.Register<Base.Containers.Services>(() => services);
-            SimpleIoc.Default.Register<Core.Containers.Services>(() => services);
+            SimpleIoc.Default.Register<Core.Base.Containers.Services>(() => services);
         }
 
         private void InitializeNavigationBindings()

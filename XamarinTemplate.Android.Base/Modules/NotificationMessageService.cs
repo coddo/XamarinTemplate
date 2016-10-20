@@ -4,8 +4,8 @@ using Android.Support.Design.Widget;
 using Android.Widget;
 using XamarinTemplate.Android.Base.Containers;
 using XamarinTemplate.Android.Base.Util.Extensions;
-using XamarinTemplate.Core.Constants;
-using XamarinTemplate.Core.Modules.Interfaces;
+using XamarinTemplate.Core.Base.Constants;
+using XamarinTemplate.Core.Base.Modules.Interfaces;
 
 namespace XamarinTemplate.Android.Base.Modules
 {

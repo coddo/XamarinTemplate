@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using XamarinTemplate.Core.Enum;
-using XamarinTemplate.Core.Modules.Interfaces;
+using XamarinTemplate.Core.Base.Enum;
+using XamarinTemplate.Core.Base.Modules.Interfaces;
 
 namespace XamarinTemplate.Android.Modules
 {
