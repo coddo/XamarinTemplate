@@ -55,7 +55,12 @@ namespace XamarinTemplate.Android.Base
         {
             base.RegisterCoreServices();
 
-            SimpleIoc.Default.Register(() => new NavigationService());
+            // Navigation service
+            var navigationService = new NavigationService();
+            SimpleIoc.Default.Register(() => navigationService);
+            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
+
+            // Basic core services
             SimpleIoc.Default.Register<ILoggingService, LoggingService>();
             SimpleIoc.Default.Register<IDialogService, DialogService>();
             SimpleIoc.Default.Register<INetworkService, NetworkService>();

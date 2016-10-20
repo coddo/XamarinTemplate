@@ -45,7 +45,6 @@ namespace XamarinTemplate.Core.Base
 
         protected virtual void RegisterCoreServices()
         {
-            SimpleIoc.Default.Register<INavigationService, NavigationService>();
             SimpleIoc.Default.Register<IHttpClientService, HttpClientService>();
             SimpleIoc.Default.Register<IRestClient, RestClient>();
             SimpleIoc.Default.Register<IStorageService, StorageService>();
