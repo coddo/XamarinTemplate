@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Constants\NotificationConstants.cs" />
+    <Compile Include="Containers\Services.cs" />
     <Compile Include="Enum\MessageAction.cs" />
     <Compile Include="Enum\NotificationIcon.cs" />
     <Compile Include="Modules\Interfaces\INotificationIconService.cs" />
@@ -112,7 +113,9 @@
       <Name>XamarinTemplate.Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

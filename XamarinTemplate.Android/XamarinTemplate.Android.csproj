@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Containers\Services.cs" />
     <Compile Include="MainApp.cs" />
     <Compile Include="Containers\CoreServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -160,6 +161,7 @@
   <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="Resources\anim\" />
+    <Folder Include="Service\" />
     <Folder Include="UI\Components\" />
     <Folder Include="Util\" />
   </ItemGroup>

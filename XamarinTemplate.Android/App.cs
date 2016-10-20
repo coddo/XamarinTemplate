@@ -15,21 +15,11 @@ namespace XamarinTemplate.Android
 
         public static void Initialize()
         {
-            // App components
-            var components = new CoreServices();
-
-            SimpleIoc.Default.Register(() => components);
-            SimpleIoc.Default.Register<Base.Containers.CoreServices>(() => components);
-            SimpleIoc.Default.Register<Core.Containers.CoreServices>(() => components);
-
-            // App
-            mInstance = new App();
-            mInstance.InitializeInstance();
-
-            SimpleIoc.Default.Register(() => mInstance);
-            SimpleIoc.Default.Register<Base.App>(() => mInstance);
-            SimpleIoc.Default.Register<Core.App>(() => mInstance);
+            InitializeServices();
+            InitializeApp();
         }
+
+        #region Overrides
 
         public override void InitializeInstance()
         {
@@ -38,14 +28,48 @@ namespace XamarinTemplate.Android
             InitializeNavigationBindings();
         }
 
-        protected override void InitializeIocContainer()
+        protected override void RegisterCoreServices()
         {
-            base.InitializeIocContainer();
+            base.RegisterCoreServices();
 
             SimpleIoc.Default.Register<INotificationIconService, NotificationIconService>();
         }
 
-        #region Private initialization methods
+        protected override void RegisterServices()
+        {
+            base.RegisterServices();
+        }
+
+        #endregion
+
+        #region App initialization methods
+
+        private static void InitializeApp()
+        {
+            mInstance = new App();
+            mInstance.InitializeInstance();
+
+            SimpleIoc.Default.Register(() => mInstance);
+            SimpleIoc.Default.Register<Base.App>(() => mInstance);
+            SimpleIoc.Default.Register<Core.App>(() => mInstance);
+        }
+
+        private static void InitializeServices()
+        {
+            // App Core services
+            var coreServices = new CoreServices();
+
+            SimpleIoc.Default.Register(() => coreServices);
+            SimpleIoc.Default.Register<Base.Containers.CoreServices>(() => coreServices);
+            SimpleIoc.Default.Register<Core.Containers.CoreServices>(() => coreServices);
+
+            // App services
+            var services = new Services();
+
+            SimpleIoc.Default.Register(() => services);
+            SimpleIoc.Default.Register<Base.Containers.Services>(() => services);
+            SimpleIoc.Default.Register<Core.Containers.Services>(() => services);
+        }
 
         private void InitializeNavigationBindings()
         {

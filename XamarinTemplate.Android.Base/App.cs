@@ -51,9 +51,9 @@ namespace XamarinTemplate.Android.Base
             IsAppInitialized = true;
         }
 
-        protected override void InitializeIocContainer()
+        protected override void RegisterCoreServices()
         {
-            base.InitializeIocContainer();
+            base.RegisterCoreServices();
 
             SimpleIoc.Default.Register(() => new NavigationService());
             SimpleIoc.Default.Register<ILoggingService, LoggingService>();
@@ -62,6 +62,11 @@ namespace XamarinTemplate.Android.Base
             SimpleIoc.Default.Register<INotificationMessageService, NotificationMessageService>();
             SimpleIoc.Default.Register<INotificationService, NotificationService>();
             SimpleIoc.Default.Register<IAppSettingsService, AppSettingsService>();
+        }
+
+        protected override void RegisterServices()
+        {
+            base.RegisterServices();
         }
 
         private void InitializeLocalDatabase()

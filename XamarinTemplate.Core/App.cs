@@ -37,7 +37,20 @@ namespace XamarinTemplate.Core
             CleanupIocContainer();
         }
 
-        protected virtual void InitializeIocContainer()
+        private void InitializeIocContainer()
+        {
+            RegisterCoreServices();
+            RegisterServices();
+        }
+
+        private void CleanupIocContainer()
+        {
+            SimpleIoc.Default.Reset();
+        }
+
+        #region Service registration
+
+        protected virtual void RegisterCoreServices()
         {
             SimpleIoc.Default.Register<INavigationService, NavigationService>();
             SimpleIoc.Default.Register<IHttpClientService, HttpClientService>();
@@ -45,9 +58,11 @@ namespace XamarinTemplate.Core
             SimpleIoc.Default.Register<IStorageService, StorageService>();
         }
 
-        protected virtual void CleanupIocContainer()
+        protected virtual void RegisterServices()
         {
-            SimpleIoc.Default.Reset();
+
         }
+
+        #endregion
     }
 }
