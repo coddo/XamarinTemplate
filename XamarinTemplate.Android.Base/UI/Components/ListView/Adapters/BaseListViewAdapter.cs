@@ -6,7 +6,6 @@ using Android.Graphics;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using XamarinTemplate.Android.Base.IOC;
 using XamarinTemplate.Android.Base.UI.Components.ListView.ViewHolders.Interfaces;
 using XamarinTemplate.Android.Base.Util.Models;
 using XamarinTemplate.Core.ViewModels.Base;
@@ -130,7 +129,7 @@ namespace XamarinTemplate.Android.Base.UI.Components.ListView.Adapters
             }
             catch (Exception ex)
             {
-                Modules.LoggingService.LogException<BaseListViewAdapter<TUiItem, TViewHolder>>(ex);
+                Core.Containers.CoreServices.LoggingService.LogException<BaseListViewAdapter<TUiItem, TViewHolder>>(ex);
                 return view;
             }
         }

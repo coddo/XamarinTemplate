@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GalaSoft.MvvmLight.Threading;
-using XamarinTemplate.Core.IOC;
+using XamarinTemplate.Core.Containers;
 
 namespace XamarinTemplate.Core.ViewModels.Base
 {
@@ -13,18 +13,18 @@ namespace XamarinTemplate.Core.ViewModels.Base
 
         public void ShowViewModel(Type viewModelType, IDictionary<string, string> parameters = null, bool syncWithUiThread = false)
         {
-            Modules.NavigationService.ShowViewModel(viewModelType, parameters, syncWithUiThread);
+            CoreServices.NavigationService.ShowViewModel(viewModelType, parameters, syncWithUiThread);
         }
 
         public void ShowViewModel<T>(IDictionary<string, string> parameters = null, bool syncWithUiThread = false)
             where T : BaseViewModel
         {
-            Modules.NavigationService.ShowViewModel<T>(parameters, syncWithUiThread);
+            CoreServices.NavigationService.ShowViewModel<T>(parameters, syncWithUiThread);
         }
 
         public void GoBack(bool syncWithUiThread = false)
         {
-            Action navigationAction = () => Modules.NavigationService.GoBack();
+            Action navigationAction = () => CoreServices.NavigationService.GoBack();
 
             if (syncWithUiThread)
             {
@@ -41,11 +41,11 @@ namespace XamarinTemplate.Core.ViewModels.Base
 
             if (!value)
             {
-                Modules.DialogService.CloseBusyDialog();
+                CoreServices.DialogService.CloseBusyDialog();
             }
             else if (showUi)
             {
-                Modules.DialogService.ShowBusyDialog(text);
+                CoreServices.DialogService.ShowBusyDialog(text);
             }
         }
 

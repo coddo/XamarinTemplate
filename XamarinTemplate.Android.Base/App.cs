@@ -2,11 +2,12 @@ using System;
 using Android.App;
 using Android.Views;
 using GalaSoft.MvvmLight.Ioc;
-using XamarinTemplate.Android.Base.IOC;
-using XamarinTemplate.Android.Base.Services;
+using SQLite.Net.Platform.XamarinAndroid;
+using XamarinTemplate.Android.Base.Containers;
+using XamarinTemplate.Android.Base.Modules;
 using XamarinTemplate.Android.Base.UI.Activities.Base;
-using XamarinTemplate.Core.Services;
-using XamarinTemplate.Core.Services.Interfaces;
+using XamarinTemplate.Core.Modules;
+using XamarinTemplate.Core.Modules.Interfaces;
 using XamarinTemplate.Models.Models;
 
 namespace XamarinTemplate.Android.Base
@@ -70,9 +71,9 @@ namespace XamarinTemplate.Android.Base
             {
                 typeof(User)
             };
-            var platform = new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid();
+            var platform = new SQLitePlatformAndroid();
 
-            Modules.StorageService.InitializeDatabase(platform, storagePath, modelsCollection);
+            CoreServices.StorageService.InitializeDatabase(platform, storagePath, modelsCollection);
         }
 
         #endregion

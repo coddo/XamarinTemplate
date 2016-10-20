@@ -1,8 +1,8 @@
 using GalaSoft.MvvmLight.Ioc;
-using XamarinTemplate.Android.Base.Services.Interfaces;
-using XamarinTemplate.Android.IOC;
-using XamarinTemplate.Android.Services;
+using XamarinTemplate.Android.Containers;
+using XamarinTemplate.Android.Modules;
 using XamarinTemplate.Android.UI.Activities;
+using XamarinTemplate.Core.Modules.Interfaces;
 using XamarinTemplate.Core.ViewModels;
 
 namespace XamarinTemplate.Android
@@ -15,12 +15,12 @@ namespace XamarinTemplate.Android
 
         public static void Initialize()
         {
-            // App IOC
-            var modules = new Modules();
+            // App components
+            var components = new CoreServices();
 
-            SimpleIoc.Default.Register(() => modules);
-            SimpleIoc.Default.Register<Base.IOC.Modules>(() => modules);
-            SimpleIoc.Default.Register<Core.IOC.Modules>(() => modules);
+            SimpleIoc.Default.Register(() => components);
+            SimpleIoc.Default.Register<Base.Containers.CoreServices>(() => components);
+            SimpleIoc.Default.Register<Core.Containers.CoreServices>(() => components);
 
             // App
             mInstance = new App();
@@ -49,9 +49,9 @@ namespace XamarinTemplate.Android
 
         private void InitializeNavigationBindings()
         {
-            Modules.NavigationService.Configure(nameof(SplashScreenViewModel), typeof(SplashScreenActivity));
-            Modules.NavigationService.Configure(nameof(MainViewModel), typeof(MainActivity));
-            Modules.NavigationService.Configure(nameof(SecondViewModel), typeof(SecondActivity));
+            CoreServices.NavigationService.Configure(nameof(SplashScreenViewModel), typeof(SplashScreenActivity));
+            CoreServices.NavigationService.Configure(nameof(MainViewModel), typeof(MainActivity));
+            CoreServices.NavigationService.Configure(nameof(SecondViewModel), typeof(SecondActivity));
         }
 
         #endregion

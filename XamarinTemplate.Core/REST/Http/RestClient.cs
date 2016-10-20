@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using XamarinTemplate.Core.IOC;
+using XamarinTemplate.Core.Containers;
 using XamarinTemplate.Core.REST.Constants;
 using XamarinTemplate.Core.REST.Enums;
 using XamarinTemplate.Core.REST.Interfaces;
@@ -42,7 +42,7 @@ namespace XamarinTemplate.Core.REST.Http
                 return null;
             }
 
-            using (var client = Modules.HtppClientService.GetNativeHttpClientInstance())
+            using (var client = CoreServices.HtppClientService.GetNativeHttpClientInstance())
             {
                 SetupHttpClient(client, headers);
 
@@ -62,11 +62,11 @@ namespace XamarinTemplate.Core.REST.Http
                 }
                 catch (WebException)
                 {
-                    Modules.NetworkService.SignalServerConnectionDown();
+                    CoreServices.NetworkService.SignalServerConnectionDown();
                 }
                 catch (Exception ex)
                 {
-                    Modules.LoggingService.LogException(ex);
+                    CoreServices.LoggingService.LogException(ex);
                 }
             }
 
@@ -87,7 +87,7 @@ namespace XamarinTemplate.Core.REST.Http
                 return null;
             }
 
-            using (var client = Modules.HtppClientService.GetNativeHttpClientInstance())
+            using (var client = CoreServices.HtppClientService.GetNativeHttpClientInstance())
             {
                 SetupHttpClient(client, headers);
                 try
@@ -102,11 +102,11 @@ namespace XamarinTemplate.Core.REST.Http
                 }
                 catch (WebException)
                 {
-                    Modules.NetworkService.SignalServerConnectionDown();
+                    CoreServices.NetworkService.SignalServerConnectionDown();
                 }
                 catch (Exception ex)
                 {
-                    Modules.LoggingService.LogException(ex);
+                    CoreServices.LoggingService.LogException(ex);
                 }
             }
 
@@ -128,7 +128,7 @@ namespace XamarinTemplate.Core.REST.Http
                 return null;
             }
 
-            using (var client = Modules.HtppClientService.GetNativeHttpClientInstance())
+            using (var client = CoreServices.HtppClientService.GetNativeHttpClientInstance())
             {
                 SetupHttpClient(client, headers);
                 try
@@ -149,11 +149,11 @@ namespace XamarinTemplate.Core.REST.Http
                 }
                 catch (WebException)
                 {
-                    Modules.NetworkService.SignalServerConnectionDown();
+                    CoreServices.NetworkService.SignalServerConnectionDown();
                 }
                 catch (Exception ex)
                 {
-                    Modules.LoggingService.LogException(ex);
+                    CoreServices.LoggingService.LogException(ex);
                 }
             }
 
@@ -179,7 +179,7 @@ namespace XamarinTemplate.Core.REST.Http
                 return null;
             }
 
-            using (var client = Modules.HtppClientService.GetNativeHttpClientInstance())
+            using (var client = CoreServices.HtppClientService.GetNativeHttpClientInstance())
             {
                 SetupHttpClient(client, headers);
                 try
@@ -201,11 +201,11 @@ namespace XamarinTemplate.Core.REST.Http
                 }
                 catch (WebException)
                 {
-                    Modules.NetworkService.SignalServerConnectionDown();
+                    CoreServices.NetworkService.SignalServerConnectionDown();
                 }
                 catch (Exception ex)
                 {
-                    Modules.LoggingService.LogException(ex);
+                    CoreServices.LoggingService.LogException(ex);
                 }
             }
 
@@ -218,12 +218,12 @@ namespace XamarinTemplate.Core.REST.Http
 
         private static bool HasInternetConnection()
         {
-            if (Modules.NetworkService.DeviceHasInternetConnectivity())
+            if (CoreServices.NetworkService.DeviceHasInternetConnectivity())
             {
                 return true;
             }
 
-            Modules.NetworkService.SignalNoInternetConnection();
+            CoreServices.NetworkService.SignalNoInternetConnection();
             return false;
         }
 
@@ -275,7 +275,7 @@ namespace XamarinTemplate.Core.REST.Http
             }
             catch (Exception ex)
             {
-                Modules.LoggingService.LogException(ex);
+                CoreServices.LoggingService.LogException(ex);
             }
         }
 

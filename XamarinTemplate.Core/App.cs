@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Threading;
+using XamarinTemplate.Core.Modules;
+using XamarinTemplate.Core.Modules.Interfaces;
 using XamarinTemplate.Core.REST.Http;
 using XamarinTemplate.Core.REST.Interfaces;
-using XamarinTemplate.Core.Services;
-using XamarinTemplate.Core.Services.Interfaces;
 using XamarinTemplate.Core.ViewModels.Base;
 using XamarinTemplate.Core.ViewModels.Management;
 
