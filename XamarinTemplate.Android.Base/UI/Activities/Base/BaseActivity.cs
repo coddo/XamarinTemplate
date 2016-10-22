@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using GalaSoft.MvvmLight.Helpers;
 using Newtonsoft.Json;
-using XamarinTemplate.Android.Base.IOC;
 using XamarinTemplate.Android.Base.Util.Constants;
-using XamarinTemplate.Core.ViewModels.Base;
+using XamarinTemplate.Core.Base.ViewModels.Base;
 using XamarinTemplate.Core.ViewModels.Management;
 
 namespace XamarinTemplate.Android.Base.UI.Activities.Base
@@ -28,7 +27,7 @@ namespace XamarinTemplate.Android.Base.UI.Activities.Base
             App.Instance.CurrentViewModel = ViewModel;
             ViewModel.CloseViewAction = Finish;
 
-            var parameters = Modules.ConcreteNavigationService.GetAndRemoveParameter<IDictionary<string, string>>(Intent);
+            var parameters = Containers.CoreServices.ConcreteNavigationService.GetAndRemoveParameter<IDictionary<string, string>>(Intent);
             if (parameters == null || parameters.Count == 0)
             {
                 var paramsString = Intent.GetStringExtra(ParameterConstants.PARAMETERS_INTENT_KEY);

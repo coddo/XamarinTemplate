@@ -1,11 +1,14 @@
+using System;
 using Android.App;
 using Android.Views;
 using GalaSoft.MvvmLight.Ioc;
-using XamarinTemplate.Android.Base.Services;
+using SQLite.Net.Platform.XamarinAndroid;
+using XamarinTemplate.Android.Base.Containers;
+using XamarinTemplate.Android.Base.Modules;
 using XamarinTemplate.Android.Base.UI.Activities.Base;
-using XamarinTemplate.Core.Services;
-using XamarinTemplate.Core.Services.Interfaces;
-using DialogService = XamarinTemplate.Android.Base.Services.DialogService;
+using XamarinTemplate.Core.Base.Modules;
+using XamarinTemplate.Core.Base.Modules.Interfaces;
+using XamarinTemplate.Models.Models;
 
 namespace XamarinTemplate.Android.Base
 {
@@ -43,19 +46,44 @@ namespace XamarinTemplate.Android.Base
         {
             base.InitializeInstance();
 
+            InitializeLocalDatabase();
+
             IsAppInitialized = true;
         }
 
-        protected override void InitializeIocContainer()
+        protected override void RegisterCoreServices()
         {
-            base.InitializeIocContainer();
+            base.RegisterCoreServices();
 
-            SimpleIoc.Default.Register(() => new NavigationService());
+            // Navigation service
+            var navigationService = new NavigationService();
+            SimpleIoc.Default.Register(() => navigationService);
+            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
+
+            // Basic core services
             SimpleIoc.Default.Register<ILoggingService, LoggingService>();
             SimpleIoc.Default.Register<IDialogService, DialogService>();
             SimpleIoc.Default.Register<INetworkService, NetworkService>();
             SimpleIoc.Default.Register<INotificationMessageService, NotificationMessageService>();
             SimpleIoc.Default.Register<INotificationService, NotificationService>();
+            SimpleIoc.Default.Register<IAppSettingsService, AppSettingsService>();
+        }
+
+        protected override void RegisterServices()
+        {
+            base.RegisterServices();
+        }
+
+        private void InitializeLocalDatabase()
+        {
+            var storagePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var modelsCollection = new[]
+            {
+                typeof(User)
+            };
+            var platform = new SQLitePlatformAndroid();
+
+            CoreServices.StorageService.InitializeDatabase(platform, storagePath, modelsCollection);
         }
 
         #endregion

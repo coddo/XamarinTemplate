@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using XamarinTemplate.Core.Enum;
-using XamarinTemplate.Core.IOC;
-using XamarinTemplate.Core.Models;
-using XamarinTemplate.Core.ViewModels.Base;
+using XamarinTemplate.Core.Base.Containers;
+using XamarinTemplate.Core.Base.Enum;
+using XamarinTemplate.Core.Base.Models;
+using XamarinTemplate.Core.Base.ViewModels.Base;
 
 namespace XamarinTemplate.Core.ViewModels
 {
@@ -27,7 +27,7 @@ namespace XamarinTemplate.Core.ViewModels
             Task.Delay(100).ConfigureAwait(false).GetAwaiter().OnCompleted(() =>
             {
                 var text = parameters?["test"];
-                Modules.NotificationMessageService.ShowInfo(text);
+                CoreServices.NotificationMessageService.ShowInfo(text);
             });
         }
 
@@ -54,17 +54,17 @@ namespace XamarinTemplate.Core.ViewModels
                 Title = "Second text"
             };
 
-            Modules.NotificationService.CreateNotification(NotificationIcon.AppIcon, "Sample notification title",
+            CoreServices.NotificationService.CreateNotification(NotificationIcon.AppIcon, "Sample notification title",
                 "afhasifbhaskfhzsifhai fhsauif haifhaskjf hasjklfhas jfhakf haskf", mainMessage,  new[] { secondMessage1, secondMessage2 });
         }
 
         private void LoadingDialogAction()
         {
-            RunOnUiThread(() => Modules.DialogService.ShowBusyDialog("Action in progress"));
+            RunOnUiThread(() => CoreServices.DialogService.ShowBusyDialog("Action in progress"));
 
             Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false).GetAwaiter().OnCompleted(() =>
             {
-                RunOnUiThread(() => Modules.DialogService.CloseBusyDialog());
+                RunOnUiThread(() => CoreServices.DialogService.CloseBusyDialog());
             });
         }
     }
