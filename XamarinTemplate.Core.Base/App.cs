@@ -1,7 +1,7 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using CoddoTech.Portable.RestClient.Client;
+using CoddoTech.Portable.RestClient.Interfaces;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Threading;
-using PortableRestClient.Http;
-using PortableRestClient.Interfaces;
 using XamarinTemplate.Core.Base.Modules;
 using XamarinTemplate.Core.Base.Modules.Interfaces;
 using XamarinTemplate.Core.Base.ViewModels.Base;

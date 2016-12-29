@@ -1,5 +1,5 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using PortableRestClient.Interfaces;
+﻿using CoddoTech.Portable.RestClient.Interfaces;
+using GalaSoft.MvvmLight.Ioc;
 using XamarinTemplate.Core.Base.Modules.Interfaces;
 
 namespace XamarinTemplate.Core.Base.Containers
