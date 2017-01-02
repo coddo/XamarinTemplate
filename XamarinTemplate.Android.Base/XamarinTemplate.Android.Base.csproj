@@ -38,7 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CoddoTech.Portable.RestClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CoddoTech.Portable.RestClient.1.0.0\lib\netstandard16\CoddoTech.Portable.RestClient.dll</HintPath>
+      <HintPath>..\packages\CoddoTech.Portable.RestClient.1.0.3\lib\MonoAndroid\CoddoTech.Portable.RestClient.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\monoandroid1\GalaSoft.MvvmLight.dll</HintPath>
