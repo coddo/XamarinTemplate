@@ -1,9 +1,9 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using CoddoTech.Portable.RestClient.Client;
+using CoddoTech.Portable.RestClient.Interfaces;
+using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Threading;
 using XamarinTemplate.Core.Base.Modules;
 using XamarinTemplate.Core.Base.Modules.Interfaces;
-using XamarinTemplate.Core.Base.REST.Http;
-using XamarinTemplate.Core.Base.REST.Interfaces;
 using XamarinTemplate.Core.Base.ViewModels.Base;
 
 namespace XamarinTemplate.Core.Base
@@ -45,9 +45,10 @@ namespace XamarinTemplate.Core.Base
 
         protected virtual void RegisterCoreServices()
         {
-            SimpleIoc.Default.Register<IHttpClientService, HttpClientService>();
-            SimpleIoc.Default.Register<IRestClient, RestClient>();
             SimpleIoc.Default.Register<IStorageService, StorageService>();
+
+            // Dependency services
+            SimpleIoc.Default.Register<IRestClient, RestClient>();
         }
 
         protected virtual void RegisterServices()

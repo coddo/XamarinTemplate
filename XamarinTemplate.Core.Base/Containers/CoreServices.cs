@@ -1,6 +1,6 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using CoddoTech.Portable.RestClient.Interfaces;
+using GalaSoft.MvvmLight.Ioc;
 using XamarinTemplate.Core.Base.Modules.Interfaces;
-using XamarinTemplate.Core.Base.REST.Interfaces;
 
 namespace XamarinTemplate.Core.Base.Containers
 {
@@ -13,7 +13,6 @@ namespace XamarinTemplate.Core.Base.Containers
         private INavigationService mNavigationService;
         private ILoggingService mLoggingService;
         private INetworkService mNetworkService;
-        private IHttpClientService mHttpClientService;
         private IRestClient mRestClient;
         private INotificationMessageService mNotificationMessageService;
         private INotificationService mNotificationService;
@@ -34,9 +33,6 @@ namespace XamarinTemplate.Core.Base.Containers
 
         public static INetworkService NetworkService => Instance.mNetworkService 
             ?? (Instance.mNetworkService = SimpleIoc.Default.GetInstance<INetworkService>());
-
-        public static IHttpClientService HtppClientService => Instance.mHttpClientService 
-            ?? (Instance.mHttpClientService = SimpleIoc.Default.GetInstance<IHttpClientService>());
 
         public static IRestClient RestClient => Instance.mRestClient 
             ?? (Instance.mRestClient = SimpleIoc.Default.GetInstance<IRestClient>());

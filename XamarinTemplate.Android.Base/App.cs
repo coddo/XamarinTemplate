@@ -1,6 +1,7 @@
 using System;
 using Android.App;
 using Android.Views;
+using CoddoTech.Portable.RestClient.Interfaces;
 using GalaSoft.MvvmLight.Ioc;
 using SQLite.Net.Platform.XamarinAndroid;
 using XamarinTemplate.Android.Base.Containers;
@@ -67,6 +68,9 @@ namespace XamarinTemplate.Android.Base
             SimpleIoc.Default.Register<INotificationMessageService, NotificationMessageService>();
             SimpleIoc.Default.Register<INotificationService, NotificationService>();
             SimpleIoc.Default.Register<IAppSettingsService, AppSettingsService>();
+
+            // Dependency services
+            SimpleIoc.Default.Register<IHttpClientFactory, HttpClientFactory>();
         }
 
         protected override void RegisterServices()

@@ -5,19 +5,17 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DF59481F-229F-4482-A76E-4E3D3D397D99}</ProjectGuid>
+    <ProjectGuid>{5A2D2767-B78F-46D3-BB1A-CAA5D983DC6B}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XamarinTemplate.Android</RootNamespace>
-    <AssemblyName>XamarinTemplate.Android</AssemblyName>
+    <RootNamespace>XamarinTemplate.Android.Base</RootNamespace>
+    <AssemblyName>XamarinTemplate.Android.Base</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
-    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -29,20 +27,14 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
-    <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-    <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
@@ -57,7 +49,6 @@
       <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\monoandroid1\GalaSoft.MvvmLight.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Java.Interop" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -66,6 +57,14 @@
     <Reference Include="mscorlib" />
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLite.Net, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLite.Net.Core-PCL.3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SQLite.Net.Platform.XamarinAndroid, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SQLite.Net-PCL.3.1.1\lib\MonoAndroid\SQLite.Net.Platform.XamarinAndroid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -119,35 +118,46 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Containers\Services.cs" />
-    <Compile Include="MainApp.cs" />
+    <Compile Include="BaseApp.cs" />
     <Compile Include="Containers\CoreServices.cs" />
+    <Compile Include="Containers\Services.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
-    <Compile Include="Modules\NotificationIconService.cs" />
-    <Compile Include="UI\Activities\MainActivity.cs" />
-    <Compile Include="UI\Activities\SecondActivity.cs" />
-    <Compile Include="UI\Activities\SplashScreenActivity.cs" />
+    <Compile Include="Modules\DialogService.cs" />
+    <Compile Include="Modules\LoggingService.cs" />
+    <Compile Include="Modules\NetworkService.cs" />
+    <Compile Include="Modules\NotificationMessageService.cs" />
+    <Compile Include="Modules\NotificationService.cs" />
+    <Compile Include="Modules\AppSettingsService.cs" />
+    <Compile Include="UI\Activities\Base\BaseActivity.cs" />
+    <Compile Include="UI\Activities\Base\RootViewBaseActivity.cs" />
+    <Compile Include="UI\Components\ListView\Adapters\BaseCheckedListViewAdapter.cs" />
+    <Compile Include="UI\Components\ListView\Adapters\BaseListViewAdapter.cs" />
+    <Compile Include="UI\Components\ListView\Adapters\BaseRadioListViewAdapter.cs" />
+    <Compile Include="UI\Components\ListView\Adapters\BaseSelectableListViewAdapter.cs" />
+    <Compile Include="UI\Components\ListView\TagObjectModel.cs" />
+    <Compile Include="UI\Components\ListView\ViewHolders\CheckedItemViewHolder.cs" />
+    <Compile Include="UI\Components\ListView\ViewHolders\Interfaces\ICheckedListViewItemViewHolder.cs" />
+    <Compile Include="UI\Components\ListView\ViewHolders\Interfaces\INameTextViewItemViewHolder.cs" />
+    <Compile Include="UI\Components\ListView\ViewHolders\Interfaces\IRadioListViewItemViewHolder.cs" />
+    <Compile Include="UI\Components\ListView\ViewHolders\RadioItemViewHolder.cs" />
+    <Compile Include="Util\Constants\ParameterConstants.cs" />
+    <Compile Include="Util\Extensions\TextExtensions.cs" />
+    <Compile Include="Util\Icons\NotificationIconExtensions.cs" />
+    <Compile Include="Util\LifeCycleManager.cs" />
+    <Compile Include="Util\MessageBroadcastReceiver.cs" />
+    <Compile Include="Util\Models\JavaObjectWrapper.cs" />
+    <Compile Include="Util\NetworkUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Properties\AndroidManifest.xml" />
-    <AndroidResource Include="Resources\layout\main.axml" />
-    <AndroidResource Include="Resources\layout\second.axml" />
-    <AndroidResource Include="Resources\layout\splash_screen.axml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\app_icon.png" />
+    <AndroidResource Include="Resources\layout\loading_dialog.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XamarinTemplate.Android.Base\XamarinTemplate.Android.Base.csproj">
-      <Project>{5a2d2767-b78f-46d3-bb1a-caa5d983dc6b}</Project>
-      <Name>XamarinTemplate.Android.Base</Name>
-    </ProjectReference>
     <ProjectReference Include="..\XamarinTemplate.Core.Base\XamarinTemplate.Core.Base.csproj">
       <Project>{375f2b69-34d8-4c0b-9bee-0209075b9836}</Project>
       <Name>XamarinTemplate.Core.Base</Name>
@@ -163,10 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
-    <Folder Include="Resources\anim\" />
-    <Folder Include="Service\" />
-    <Folder Include="UI\Components\" />
-    <Folder Include="Util\" />
+    <Folder Include="Modules\Interfaces\" />
+    <Folder Include="Resources\drawable\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
@@ -177,10 +186,10 @@
     <Error Condition="!Exists('..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Xamarin.Android.Support.Vector.Drawable.24.2.1\build\Xamarin.Android.Support.Vector.Drawable.targets'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-     Other similar extension points exist, see Microsoft.Common.targets.
-		<Target Name="BeforeBuild">
-		</Target>
-		<Target Name="AfterBuild">
-		</Target>
- -->
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>
